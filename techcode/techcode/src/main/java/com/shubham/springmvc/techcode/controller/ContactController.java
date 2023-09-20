@@ -1,7 +1,6 @@
 package com.shubham.springmvc.techcode.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.shubham.springmvc.techcode.model.Contact;
 import com.shubham.springmvc.techcode.service.ContactService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class ContactController {
 	
-	private static Logger logger = LoggerFactory.getLogger(ContactController.class);
+	//private static Logger logger = LoggerFactory.getLogger(ContactController.class);
 
 	private final ContactService contactService;
 	
@@ -54,7 +56,7 @@ public class ContactController {
 	public ModelAndView saveQuery(Contact contact) {
 		ModelAndView modelAndView = new ModelAndView();
 		boolean isSaved = contactService.saveQueryDetails(contact);
-		logger.info("Data saved successfuly ? : " + (isSaved ? "Yes" : "No"));
+		log.info("Data saved successfuly ? : " + (isSaved ? "Yes" : "No"));
 		modelAndView.setViewName("redirect:/contact");
 		return modelAndView;
 	}

@@ -1,5 +1,9 @@
 package com.shubham.springmvc.techcode.model;
 
+import lombok.Data;
+
+//@Data = (@Getter, @Setter, @RequiredArgsConstructor, @ToString, @EqualsAndHashCode)
+@Data
 public class Holiday {
 	
 	private final String day;
@@ -9,26 +13,5 @@ public class Holiday {
 	public enum Type{
 		FESTIVAL, GOVERNMENT
 	}
-
-	public Holiday(String day, String reason, Type type) {
-		super();
-		this.day = day;
-		this.reason = reason;
-		this.type = type;
-	}
-
-	public String getDay() {
-		return day;
-	}
-
-	public String getReason() {
-		return reason;
-	}
-
-	public Type getType() {
-		return type;
-	}
-	
-	
 	
 }

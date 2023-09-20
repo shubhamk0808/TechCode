@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shubham.springmvc.techcode.model.Holiday;
@@ -13,10 +14,18 @@ import com.shubham.springmvc.techcode.model.Holiday;
 @Controller
 public class HolidayController {
 
+	// url formed = http://localhost:8080/holidays?festival=true&govt=true
+	
 	@GetMapping("/holidays")
-	public ModelAndView displayHolidayPage() {
+	public ModelAndView displayHolidayPage(@RequestParam(required = false) boolean festival,
+			@RequestParam(required = false) boolean govt) {
 		
+
 		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.addObject("festival", festival);
+		modelAndView.addObject("govt", govt);
+		
 		List<Holiday> holidays = Arrays.asList(
 			new Holiday("06-Sep", "Janmashtami (Smarta)", Holiday.Type.FESTIVAL),
 			new Holiday("07-Sep", "Janmashtami", Holiday.Type.GOVERNMENT),

@@ -128,11 +128,15 @@
     </div>
     <div class="row">
       <div class="col-lg-7 mb-4 mb-lg-0">
-        <form th:action="@{/saveUserQuery}" method="post">
-          <input type="text" class="form-control mb-3" id="name" name="userName" placeholder="Your Name">
-          <input type="email" class="form-control mb-3" id="mail" name="userMail" placeholder="Your Email">
-          <input type="text" class="form-control mb-3" id="subject" name="userSubject" placeholder="Subject">
-          <textarea name="userMessage" id="message" class="form-control mb-3" placeholder="Your Message"></textarea>
+      	<ul>
+      		<li class="alert alert-danger" role="alert"
+      		th:each="error : ${#fields.errors('contact.*')}" th:text="${error}" />
+      	</ul>
+        <form th:action="@{/saveUserQuery}" method="post" th:object="${contact}">
+          <input type="text" class="form-control mb-3" id="name" th:field="*{userName}" placeholder="Your Name">
+          <input type="email" class="form-control mb-3" id="mail" th:field="*{userMail}" placeholder="Your Email">
+          <input type="text" class="form-control mb-3" id="subject" th:field="*{userSubject}" placeholder="Subject">
+          <textarea th:field="*{userMessage}" id="message" class="form-control mb-3" placeholder="Your Message"></textarea>
           <button type="submit" value="send" class="btn btn-primary">SEND MESSAGE</button>
         </form>
       </div>

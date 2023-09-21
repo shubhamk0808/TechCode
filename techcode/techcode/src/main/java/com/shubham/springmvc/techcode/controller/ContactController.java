@@ -4,6 +4,8 @@ package com.shubham.springmvc.techcode.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.shubham.springmvc.techcode.model.Contact;
 import com.shubham.springmvc.techcode.service.ContactService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -29,7 +32,8 @@ public class ContactController {
 
 	@RequestMapping("/contact")
 	public String displayContactPage(Model model) {
-
+		
+		model.addAttribute("contact", new Contact());
 		return "contact.html";
 	}
 
@@ -52,12 +56,18 @@ public class ContactController {
 	
 	*/
 	
+	//@Valid : Marks a property, method parameter or method return type for validation cascading
+	//@ModelAttribute : binds a method parameter or method return value to a named model attribute, exposed to a web view.
+	//Errors : to catch the errors that will be thrown in case of validation failure
 	@PostMapping("/saveUserQuery")
-	public ModelAndView saveQuery(Contact contact) {
-		ModelAndView modelAndView = new ModelAndView();
+	public String saveQuery(@Valid @ModelAttribute("contact") Contact contact, Errors errors) {
+		if(errors.hasErrors()) {
+			log.error("Contact validation failed  | Error = " + errors.toString() );
+			return "contact.html";
+		}
 		boolean isSaved = contactService.saveQueryDetails(contact);
 		log.info("Data saved successfuly ? : " + (isSaved ? "Yes" : "No"));
-		modelAndView.setViewName("redirect:/contact");
-		return modelAndView;
+		return("redirect:/contact");
+		
 	}
 }

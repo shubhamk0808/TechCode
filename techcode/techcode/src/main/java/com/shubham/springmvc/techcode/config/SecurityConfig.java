@@ -1,9 +1,8 @@
 package com.shubham.springmvc.techcode.config;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -13,6 +12,19 @@ public class SecurityConfig {
 	@Bean	
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 		
+		//defining custom security configuration - permitAll, denyAll, authenticated		
+		http.csrf((csrf) -> csrf.disable())
+				.authorizeHttpRequests((requests) -> requests.requestMatchers("", "/", "/home").permitAll()
+				.requestMatchers("/about").permitAll()
+				.requestMatchers("/courses").authenticated()
+				.requestMatchers("/holidays/**").permitAll()
+				.requestMatchers("/contact").denyAll()
+				.requestMatchers("/saveUserQuery").permitAll()
+				.requestMatchers("/assets/**").permitAll())
+				.formLogin(Customizer.withDefaults())
+				.httpBasic(Customizer.withDefaults());
+		return http.build();
+		
 		/*
 		//Default Configuration
 		http.authorizeHttpRequests((requests) -> requests.anyRequest().authenticated());
@@ -21,14 +33,14 @@ public class SecurityConfig {
 		return http.build();
 		*/
 		
-		
+		/*
 		//Permit all
 		http.authorizeHttpRequests(requests -> requests.anyRequest().permitAll())
 			.formLogin(withDefaults())
 			.httpBasic(withDefaults());
 		
 		return http.build();
-		
+		*/
 		
 		/*
 		//deny all

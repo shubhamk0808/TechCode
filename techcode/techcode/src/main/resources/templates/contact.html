@@ -132,6 +132,9 @@
       		<li class="alert alert-danger" role="alert"
       		th:each="error : ${#fields.errors('contact.*')}" th:text="${error}" />
       	</ul>
+      	<!-- th:object = to link relation between the contact pojo object and this form data -->
+      	<!-- th:field = to link relation between Contact object's attributes and fields here -->
+      	<!-- we use dollar ($) before bean name, and * before attribute name while establishing theses relationships-->
         <form th:action="@{/saveUserQuery}" method="post" th:object="${contact}">
           <input type="text" class="form-control mb-3" id="name" th:field="*{userName}" placeholder="Your Name">
           <input type="email" class="form-control mb-3" id="mail" th:field="*{userMail}" placeholder="Your Email">

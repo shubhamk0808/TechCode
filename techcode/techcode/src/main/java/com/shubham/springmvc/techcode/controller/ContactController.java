@@ -33,6 +33,9 @@ public class ContactController {
 	@RequestMapping("/contact")
 	public String displayContactPage(Model model) {
 		
+		//to create a new contact POJO object each time a user lands on contact page
+		//This will indicate to Thymeleaf that this page holds data related to contact object, 
+		//and hence any validation defined on that Contact bean should be performed.
 		model.addAttribute("contact", new Contact());
 		return "contact.html";
 	}

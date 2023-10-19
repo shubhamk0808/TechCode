@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="ISO-8859-1">
 </head>
@@ -29,7 +30,7 @@
       <div class="row">
         <div class="col-lg-4 col-sm-8 mb-5 mb-lg-0">
           <!-- logo -->
-          <a class="logo-footer" href="home.html"><img class="img-fluid mb-4" src="/assets/images/logo.png" alt="logo"></a>
+          <a class="logo-footer" th:href="@{/home}"><img class="img-fluid mb-4" src="/assets/images/logo.png" alt="logo"></a>
           <ul class="list-unstyled">
             <li class="mb-2">23621 15 Mile Rd #C104, Clinton MI, 48035, New York, USA</li>
             <li class="mb-2">+1 (2) 345 6789</li>
@@ -42,9 +43,9 @@
           <h4 class="text-white mb-5">Quick Links</h4>
           <ul class="list-unstyled">
             <li class="mb-3"><a class="text-color" th:href="@{/about}">About Us</a></li>
-            <li class="mb-3"><a class="text-color" href="teacher.html">Our Teachers</a></li>
+            <li class="mb-3"><a class="text-color" th:href="@{/teacher}">Our Teachers</a></li>
             <li class="mb-3"><a class="text-color" th:href="@{/contact}">Contact</a></li>
-            <li class="mb-3"><a class="text-color" href="blog.html">Notice</a></li>
+            <li class="mb-3"><a class="text-color" th:href="@{/blog}">Notice</a></li>
           </ul>
         </div>
         <!-- links -->
@@ -52,9 +53,9 @@
           <h4 class="text-white mb-5">Explore</h4>
           <ul class="list-unstyled">
             <li class="mb-3"><a class="text-color" th:href="@{/courses}">Courses</a></li>
-            <li class="mb-3"><a class="text-color" href="event.html">Research</a></li>
+            <li class="mb-3"><a class="text-color" th:href="@{/events}">Research</a></li>
             <li class="mb-3"><a class="text-color" th:href="@{/holidays/all}">Holidays</a></li>
-            <li class="mb-3"><a class="text-color" href="faqs.html">FAQs</a></li>
+            <li class="mb-3"><a class="text-color" th:href="@{/about}">FAQs</a></li>
           </ul>
         </div>        
       </div>

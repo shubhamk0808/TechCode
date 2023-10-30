@@ -1,0 +1,15 @@
+
+##Error Page
+--------------------------------------------------
+	We can have 3 different types of error pages :
+	
+	i) Error page provided by Spring Boot
+	
+	ii) Error page provided by the web container ( for ex : Apache Tomcat).
+		For this to work, we need to disable white label error page, by mentioning this in application.properties file :
+		server.error.whitelabel.enabled=false
+		
+	iii)Custom error page. The most simplest way is to disable white label error page, and create a custom error page, 
+		and name it as error.html.
+	
+__________________________________________________________________________________________________________________________

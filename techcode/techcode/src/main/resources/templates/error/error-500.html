@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="ISO-8859-1">
+<title>TechCode</title>
+<!-- mobile responsive meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- Main Stylesheet -->
+<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body class="error-500">
+	<div class="face">
+		<div class="band">
+			<div class="red"></div>
+			<div class="white"></div>
+			<div class="blue"></div>
+		</div>
+		<div class="eyes"></div>
+		<div class="dimples"></div>
+		<div class="mouth"></div>
+	</div>
+
+	<h1>Oops!! Something went wrong!</h1>
+	<div class="btn-500" >
+	<a th:href="@{/home}">Go to Home</a>
+	</div>
+</body>
+</html>

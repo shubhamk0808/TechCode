@@ -21,7 +21,7 @@ public class SecurityConfig {
 		http.csrf((csrf) -> csrf.disable())
 				.authorizeHttpRequests((requests) -> requests.requestMatchers("", "/", "/home").permitAll()				
 				.requestMatchers("/about").permitAll()
-				.requestMatchers("/courses").permitAll()
+				.requestMatchers("/courses").denyAll()
 				.requestMatchers("/holidays/**").permitAll()
 				.requestMatchers("/contact").authenticated()
 				.requestMatchers("/saveUserQuery").permitAll()
@@ -37,7 +37,10 @@ public class SecurityConfig {
 				.requestMatchers("/course-single").permitAll()
 				.requestMatchers("/event-single").permitAll()
 				.requestMatchers("/blog-single").permitAll()
-				.requestMatchers("/assets/**").permitAll())
+				.requestMatchers("/error").permitAll()
+				.requestMatchers("/assets/**").permitAll()
+				.anyRequest().permitAll())
+
 				//to define our own custom login page
 				.formLogin(loginConfigurer -> loginConfigurer.loginPage("/login")
                         .defaultSuccessUrl("/home").failureUrl("/login?error=true").permitAll())
